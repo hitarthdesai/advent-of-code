@@ -2,11 +2,18 @@ use std::collections::HashMap;
 use std::fs;
 use std::iter::zip;
 
-pub fn main() {
-    let p1 = part1();
-    println!("Part1: {p1}");
-    let p2 = part2();
-    println!("Part2: {p2}");
+pub fn main(part: u8) {
+    match part {
+        1 => {
+            let result = part1();
+            println!("Part {part}: {result}")
+        },
+        2 => {
+            let result = part2();
+            println!("Part {part}: {result}")
+        },
+        _ => { eprintln!("Invalid part {part}") }
+    }
 }
 
 fn part1() -> i32 {

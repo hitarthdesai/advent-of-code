@@ -1,6 +1,3 @@
-use std::fs;
-use regex::Regex;
-
 pub fn main(part: u8) {
     match part {
         1 => {
@@ -16,13 +13,11 @@ pub fn main(part: u8) {
 }
 
 fn part1() -> i32 {
-    let input = fs::read_to_string("./src/day3/input.txt").unwrap();
-    let regex = Regex::new(r"mul\((\d+),(\d+)\)").unwrap();
-    let matches = regex.captures_iter(&input);
-
-    matches.map(|m| m[1].parse::<i32>().unwrap() * m[2].parse::<i32>().unwrap()).sum()
+    let input = fs::read_to_string("./src/day1/input.txt").unwrap();
+    /** Code Here */
 }
 
 fn part2() -> i32 {
-    return 0
+    let input = fs::read_to_string("./src/day1/input.txt").unwrap();
+    /** Code Here */
 }
