@@ -2,7 +2,12 @@ use std::collections::HashMap;
 use std::fs;
 use std::iter::zip;
 
-pub fn main(part: u8) {
+#[allow(dead_code)]
+fn main() {
+    let mut args = std::env::args();
+    args.next(); /* Skip the first argument */
+    let part = args.next().unwrap().parse::<u8>().unwrap();
+
     match part {
         1 => {
             let result = part1();
@@ -17,7 +22,7 @@ pub fn main(part: u8) {
 }
 
 fn part1() -> i32 {
-    let input = fs::read_to_string("./src/day1/input.txt").unwrap();
+    let input = fs::read_to_string("input.txt").unwrap();
     let num_lines = input.lines().count();
 
     let mut vec1 = Vec::with_capacity(num_lines);
@@ -36,7 +41,7 @@ fn part1() -> i32 {
 }
 
 fn part2() -> i32 {
-    let input = fs::read_to_string("./src/day1/input.txt").unwrap();
+    let input = fs::read_to_string("input.txt").unwrap();
     let mut map: HashMap<i32, (i32, i32)> = HashMap::new();
 
     for line in input.lines() {

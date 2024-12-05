@@ -39,12 +39,33 @@ fn main() {
             std::env::set_current_dir(path).expect(format!("Could not set directory to day {}", day).as_str());
         },
         Ok(Action::Run(day, part)) => {
-            match day {
-                1 => { day1::main(part) },
-                2 => { day2::main(part) },
-                3 => { day3::main(part) },
-                _ => { println!("Day {} hasn't been implemented yet", day); }
+            let _path = format!("src/day{}", day);
+            let path = std::path::Path::new(&_path);
+            std::env::set_current_dir(path).expect(format!("Could not set directory to day {}", day).as_str());
+
+            let compilation_output = std::process::Command::new("rustc")
+                .arg("mod.rs")
+                .arg("-o")
+                .arg("output")
+                .output()
+                .expect("Could not execute rustc");
+
+            if !compilation_output.status.success() {
+                eprintln!("Failed to compile: {}", String::from_utf8_lossy(&compilation_output.stderr));
+                std::process::exit(1);
             }
+
+            let output = std::process::Command::new("./output")
+                .arg(part.to_string())
+                .output()
+                .expect("Could not run executable");
+
+            if !output.status.success() {
+                eprintln!("Failed to run executable: {}", String::from_utf8_lossy(&output.stderr));
+                std::process::exit(1);
+            }
+
+            println!("{}", String::from_utf8_lossy(&output.stdout));
         },
         Err(message) => { eprintln!("{}", message); }
     };
