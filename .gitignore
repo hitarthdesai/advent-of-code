@@ -1,3 +1,9 @@
-/target
+**/target/
+
 .idea
+
 **/*.exe
+
+input.txt
+
+.DS_Store
