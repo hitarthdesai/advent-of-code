@@ -1,7 +1,3 @@
-mod day1;
-mod day2;
-mod day3;
-
 enum Action {
     Run(u8, u8),
     Init(u8),
@@ -37,6 +33,8 @@ fn main() {
             let path = std::path::Path::new(&_path);
             std::fs::create_dir(path).expect(format!("Could not create directory for day {}", day).as_str());
             std::env::set_current_dir(path).expect(format!("Could not set directory to day {}", day).as_str());
+            std::process::Command::new("cargo")
+                .arg("init");
         },
         Ok(Action::Run(day, part)) => {
             let _path = format!("src/day{}", day);
