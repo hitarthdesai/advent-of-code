@@ -4,6 +4,7 @@
 
 **/*.exe
 
+output
 input.txt
 
 .DS_Store
